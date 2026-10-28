@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/hello', function(){
+Route::get('/hello', function () {
     return "Ciao da StaffCost";
 });
 Route::get('/employees', [EmployeeController::class, 'index']);
