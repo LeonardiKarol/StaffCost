@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Employee;
+use App\Models\Sector;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,6 +22,17 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+        ]);
+
+        $this->call(SectorSeeder::class);
+
+        foreach (Sector::all() as $sector) {
+            Employee::factory()->count(5)->create([
+                'sector_id' => $sector->id,
+            ]);
+        }
+        Employee::factory()->count(3)->create([
+            'sector_id' => null,
         ]);
     }
 }

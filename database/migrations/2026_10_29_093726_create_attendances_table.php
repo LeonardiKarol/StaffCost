@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('employee_id')->constrained()->restrictOnDelete();
             $table->date('work_date');
             $table->string('shift');
-            $table->unique(['employee_id', 'work_date']);   
+            $table->unique(['employee_id', 'work_date']);
             $table->timestamps();
         });
     }
