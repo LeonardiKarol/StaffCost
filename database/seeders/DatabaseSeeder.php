@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Employee;
 use App\Models\Sector;
 use App\Models\User;
+use App\Models\Contract;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -34,5 +35,11 @@ class DatabaseSeeder extends Seeder
         Employee::factory()->count(3)->create([
             'sector_id' => null,
         ]);
+        foreach (Employee::all() as $employee) {
+            Contract::factory()->create([
+                'employee_id' => $employee->id,
+            ]);
+        }
+        
     }
 }
