@@ -8,12 +8,15 @@
     <body>
         <header>
             <h1>Lista dei dipendenti</h1>
+            <a href="{{route('employees.create')}}"><h4>Inserisci dipendente</h4></a>
         </header>
         <table>
             <tr>
                 <th>Nome</th>
                 <th>Cognome</th>
                 <th>Settore</th>
+                <th>Data di nascista</th>
+                <th></th>
             </tr>   
             @forelse($employees as $employee)
                 <tr>
@@ -24,6 +27,8 @@
                     @else
                         <td>Da collocare</td>   
                     @endif
+                    <td>{{$employee->birth_date}}</td>
+                    <td><a href="{{route('employees.show', $employee->id)}}">dettaglio</a></td>
                 </tr>
             @empty
                 <tr>
