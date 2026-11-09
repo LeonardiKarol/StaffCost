@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dipendente</title>
-</head>
+<x-layout :title="$employee->first_name . ' '. $employee->last_name">
 <body>
-    <a href="{{route('employees.index')}}">torna alla lista</a>
+
     <a href="{{route('employees.edit', $employee)}}">modifica</a>
         <p>
         Nome: {{$employee->first_name}} <br>
@@ -19,7 +13,4 @@
             <td>Da collocare</td>   
         @endif<br>
     </p>
-
-
-</body>
-</html>
+</x-layout>

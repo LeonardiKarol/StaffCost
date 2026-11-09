@@ -1,12 +1,4 @@
-    <!DOCTYPE html>
-    <html lang="it">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dipendenti</title>
-    </head>
-    <body>
-        <header>
+    <x-layout title="Dipendenti">
             <h1>Lista dei dipendenti</h1>
             <a href="{{route('employees.create')}}"><h4>Inserisci dipendente</h4></a>
         </header>
@@ -29,6 +21,13 @@
                     @endif
                     <td>{{$employee->birth_date}}</td>
                     <td><a href="{{route('employees.show', $employee->id)}}">dettaglio</a></td>
+                    <td>
+                        <form method="POST" action="{{ route('employees.delete', $employee) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Eliminare questo utente?')">Elimina</button>
+                        </form>
+                </td>
                 </tr>
             @empty
                 <tr>
@@ -37,5 +36,4 @@
             @endforelse
                 
         </table>
-    </body>
-    </html>
+</x-layout>

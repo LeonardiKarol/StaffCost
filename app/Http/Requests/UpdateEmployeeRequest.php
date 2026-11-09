@@ -31,7 +31,7 @@ class UpdateEmployeeRequest extends FormRequest
         ];
     }
     public function messages(): array
-{
+    {
         return [
             'first_name.required' => 'Il nome del prodotto è obbligatorio.',
             'first_name.max' => 'nome troppo lungo, massimo 100 caratteri',

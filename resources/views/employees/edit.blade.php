@@ -1,38 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dipendente</title>
-</head>
-<body>
-    <a href="{{route('employees.index')}}">torna alla lista</a>
+<x-layout title="Modifica dipendente">
+    <a href="{{ route('employees.show', $employee) }}">Annulla</a>
 
-    <form method="POST" action="{{route('employees.update', $employee)}}">
-        @csrf @method('PUT')
-        Nome: <input type="text" name="first_name" value="{{old('first_name', $employee->first_name)}}" id=""> 
-        @error('first_name')
-            {{ $message }}
-        @enderror
-        <br>
-        Cognome: <input type="text" name="last_name" value="{{old('last_name', $employee->last_name)}}" id=""> 
-        @error('last_name')
-            {{ $message }}
-        @enderror
-        <br>
-        Data di nascita: <input type="date" name="birth_date" value="{{old('birth_date', $employee->birth_date)}}" id="">
-         @error('birth_date')
-            {{ $message }}
-        @enderror
-         <br>
-        CF: <input type="text" name="tax_code" value="{{old('tax_code', $employee->tax_code)}}" id="">
-         @error('tax_code')
-            {{ $message }}
-        @enderror<br>
+    <form method="POST" action="{{ route('employees.update', $employee) }}">
+        @csrf
+        @method('PUT')
 
-        
-        <button type="submit">modifica</button>
+        Nome:<x-input name="first_name" label="Nome" :value="$employee->first_name" />
+        Cognome:<x-input name="last_name" label="Cognome" :value="$employee->last_name" />
+        Data di Nascita:<x-input name="birth_date" label="Data di nascita" type="date" :value="$employee->birth_date" />
+        CF:<x-input name="tax_code" label="Codice fiscale" :value="$employee->tax_code" />
+
+        <button type="submit">Salva modifiche</button>
     </form>
-
-</body>
-</html>
+</x-layout>

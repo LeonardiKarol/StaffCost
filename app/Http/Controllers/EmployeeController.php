@@ -32,10 +32,18 @@ class EmployeeController extends Controller
     public function edit(Employee $employee){
         return view('employees.edit', ['employee' => $employee]);
     }
+    
     public function update(Employee $employee, UpdateEmployeeRequest $request){
         
         $employee->update($request->validated());
 
         return redirect()->route('employees.show', $employee);
+    }
+
+    public function destroy(Employee $employee)
+    {
+        $employee->delete();
+
+        return redirect()->route('employees.index');
     }
 }
