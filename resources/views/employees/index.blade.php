@@ -21,13 +21,15 @@
                     @endif
                     <td>{{$employee->birth_date}}</td>
                     <td><a href="{{route('employees.show', $employee->id)}}">dettaglio</a></td>
-                    <td>
-                        <form method="POST" action="{{ route('employees.delete', $employee) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Eliminare questo utente?')">Elimina</button>
-                        </form>
-                </td>
+                    @can('delete', $employee)
+                        <td>
+                            <form method="POST" action="{{ route('employees.delete', $employee) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Eliminare questo utente?')">Elimina</button>
+                            </form>
+                        </td>
+                    @endcan
                 </tr>
             @empty
                 <tr>
